@@ -51,23 +51,28 @@ h1 { margin: 2px 0 0; font-size: clamp(2.2rem,5vw,3.6rem); font-weight: 760; let
 .icon-button:active, .primary-button:active, .secondary-button:active, .danger-button:active, .shortcut:active { transform: translateY(1px) scale(.97); }
 
 .summary {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: minmax(190px,1.2fr) repeat(2,minmax(180px,.7fr));
+  gap: 12px;
   margin: 28px 0 18px;
-  padding: 20px 22px;
+  padding: 16px;
   border: 1px solid var(--line);
   border-left: 5px solid var(--primary);
   border-radius: 16px;
   background: var(--surface);
   box-shadow: var(--shadow-lg);
   color: var(--muted);
-  font-size: clamp(1rem,2vw,1.25rem);
 }
-.summary strong { color: var(--ink); animation: value-pop .25s ease both; }
-.summary > strong:first-child { margin-right: 4px; color: var(--primary-dark); font-size: 1.4em; }
-#summary-remaining { color: var(--primary-dark); }
+.summary > div { min-width: 0; padding: 14px 16px; border-radius: 12px; }
+.summary-year { display: flex; flex-direction: column; justify-content: center; }
+.summary-year span, .summary-stat > span { font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; opacity: .8; }
+.summary-year strong { margin-top: 3px; color: var(--ink); font-size: clamp(1.8rem,4vw,2.4rem); line-height: 1; animation: value-pop .25s ease both; }
+.summary-stat { position: relative; display: grid; grid-template-columns: auto 1fr; align-content: center; border: 1px solid var(--line); background: var(--surface-tint); }
+.summary-stat > span { grid-column: 1/-1; }
+.summary-stat strong { align-self: end; margin-top: 5px; color: var(--primary-dark); font-size: clamp(1.6rem,4vw,2.2rem); line-height: .9; animation: value-pop .35s ease both; }
+.summary-stat small { align-self: end; padding: 0 0 2px 8px; color: var(--muted); font-size: .72rem; font-weight: 650; }
+.summary-stat.allowance { box-shadow: inset 4px 0 var(--cyan-soft); }
+.summary-stat.remaining { box-shadow: inset 4px 0 var(--primary-soft); }
 #summary-remaining.negative { color: var(--danger); }
 
 .utility-row { margin-bottom: 26px; padding: 13px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); box-shadow: var(--shadow-sm); }
@@ -193,12 +198,17 @@ fieldset { margin: 0; padding: 0; border: 0; }
 
 @media (max-width:1100px) { .calendar-grid { grid-template-columns: repeat(3,minmax(230px,1fr)); } }
 @media (max-width:800px) {
+  .summary { grid-template-columns: 1fr 1fr; }
+  .summary-year { grid-column: 1/-1; padding: 10px 14px; }
   .calendar-grid { grid-template-columns: repeat(2,minmax(230px,1fr)); }.three-columns { grid-template-columns: 1fr 1fr; }
   .observance-fields { grid-template-columns: 1fr 1fr; }.observed-summary { grid-column: 1/-1; }
 }
 @media (max-width:540px) {
   .app-shell { padding: 24px 12px 48px; }
-  .summary { gap: 6px; padding: 16px; border-radius: 14px; }
+  .summary { grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px; border-radius: 20px; }
+  .summary-year { padding: 10px 14px; }
+  .summary-stat { grid-template-columns: 1fr; padding: 13px 12px; }
+  .summary-stat small { padding: 5px 0 0; }
   .utility-row { align-items: flex-end; padding: 13px; }.legend { gap: 9px 12px; }
   .calendar-grid { grid-template-columns: minmax(0,1fr); gap: 14px; }.month { padding: 18px; }.day { min-height: 38px; font-size: .82rem; }
   .form-grid, .two-columns, .three-columns, .custom-entry, .observance-fields { grid-template-columns: minmax(0,1fr); }.observed-summary { grid-column: auto; }.hidden { display: none; }
