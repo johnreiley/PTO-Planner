@@ -29,6 +29,8 @@
         <div class="legend" aria-label="Calendar legend">
           <span><i class="legend-dot pto"></i>PTO</span>
           <span><i class="legend-dot holiday"></i>Holiday</span>
+          <span><i class="legend-dot observed"></i>Observed</span>
+          <span><i class="legend-dot closure"></i>Company closure</span>
           <span><i class="legend-dot off"></i>Day off</span>
         </div>
         <button id="clear-button" class="text-button" type="button">Clear PTO</button>
@@ -65,19 +67,30 @@
 
         <section class="settings-section">
           <div class="section-heading">
-            <div><h3>Preset holidays</h3><p>Choose the holidays your workplace observes.</p></div>
+            <div><h3>Official holidays</h3><p>Keep the holiday date and choose when your workplace observes it.</p></div>
           </div>
           <div id="preset-holidays" class="holiday-list"></div>
         </section>
 
         <section class="settings-section">
-          <div class="section-heading"><div><h3>Custom holidays</h3><p>Add company days or local holidays.</p></div></div>
+          <div class="section-heading"><div><h3>Custom holidays</h3><p>Add an official or local holiday with the same observance controls.</p></div></div>
           <div class="custom-entry">
-            <label>Date<input id="custom-date" type="date" /></label>
-            <label>Name (optional)<input id="custom-name" type="text" maxlength="60" placeholder="Custom holiday" /></label>
+            <label>Actual date<input id="custom-date" type="date" /></label>
+            <label>Name<input id="custom-name" type="text" maxlength="60" placeholder="Custom holiday" /></label>
             <button id="add-holiday" class="secondary-button" type="button">Add</button>
           </div>
           <div id="custom-holidays" class="holiday-list"></div>
+        </section>
+
+        <section class="settings-section">
+          <div class="section-heading"><div><h3>Company closures</h3><p>Add employer-provided days off separately from official holidays.</p></div></div>
+          <div id="closure-shortcuts" class="shortcut-list" aria-label="Common company closures"></div>
+          <div class="custom-entry">
+            <label>Date<input id="closure-date" type="date" /></label>
+            <label>Name (optional)<input id="closure-name" type="text" maxlength="60" placeholder="Company closure" /></label>
+            <button id="add-closure" class="secondary-button" type="button">Add closure</button>
+          </div>
+          <div id="company-closures" class="holiday-list closure-list"></div>
         </section>
 
         <div class="dialog-actions">
