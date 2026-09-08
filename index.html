@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Plan your annual paid time off on a simple year-at-a-glance calendar." />
+    <title>PTO Planner</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell" aria-labelledby="page-title">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">YEAR AT A GLANCE</p>
+          <h1 id="page-title">PTO Planner</h1>
+        </div>
+        <button id="settings-button" class="icon-button" type="button" aria-label="Open planner settings" title="Settings">⚙</button>
+      </header>
+
+      <section class="summary" aria-live="polite">
+        <strong id="summary-year"></strong>
+        <span aria-hidden="true">·</span>
+        <span><strong id="summary-allowance"></strong> PTO available</span>
+        <span aria-hidden="true">·</span>
+        <span><strong id="summary-remaining"></strong> remaining</span>
+      </section>
+
+      <div class="utility-row">
+        <div class="legend" aria-label="Calendar legend">
+          <span><i class="legend-dot pto"></i>PTO</span>
+          <span><i class="legend-dot holiday"></i>Holiday</span>
+          <span><i class="legend-dot off"></i>Day off</span>
+        </div>
+        <button id="clear-button" class="text-button" type="button">Clear PTO</button>
+      </div>
+
+      <section id="calendar" class="calendar-grid" aria-label="Annual calendar"></section>
+    </main>
+
+    <dialog id="settings-dialog" aria-labelledby="settings-title">
+      <form id="settings-form" method="dialog">
+        <div class="dialog-header">
+          <div>
+            <p id="dialog-kicker" class="eyebrow">PLAN YOUR YEAR</p>
+            <h2 id="settings-title">Planner setup</h2>
+          </div>
+          <button id="close-dialog" class="icon-button close-button" type="button" aria-label="Close settings">×</button>
+        </div>
+
+        <div class="form-grid two-columns">
+          <label>Year<input id="year-input" name="year" type="number" min="1970" max="2100" required /></label>
+          <label>Annual PTO allowance<input id="allowance-input" name="allowance" type="number" min="0" step="1" required /></label>
+        </div>
+
+        <fieldset>
+          <legend>Recurring weekly days off</legend>
+          <div id="weekday-toggles" class="weekday-toggles"></div>
+        </fieldset>
+
+        <div class="form-grid three-columns">
+          <label>Country<select id="country-select"></select></label>
+          <label>Region<select id="region-select"></select></label>
+          <label>Holiday preset<select id="preset-select"></select></label>
+        </div>
+
+        <section class="settings-section">
+          <div class="section-heading">
+            <div><h3>Preset holidays</h3><p>Choose the holidays your workplace observes.</p></div>
+          </div>
+          <div id="preset-holidays" class="holiday-list"></div>
+        </section>
+
+        <section class="settings-section">
+          <div class="section-heading"><div><h3>Custom holidays</h3><p>Add company days or local holidays.</p></div></div>
+          <div class="custom-entry">
+            <label>Date<input id="custom-date" type="date" /></label>
+            <label>Name (optional)<input id="custom-name" type="text" maxlength="60" placeholder="Custom holiday" /></label>
+            <button id="add-holiday" class="secondary-button" type="button">Add</button>
+          </div>
+          <div id="custom-holidays" class="holiday-list"></div>
+        </section>
+
+        <div class="dialog-actions">
+          <button id="reset-button" class="danger-button" type="button">Reset this year</button>
+          <div>
+            <button id="cancel-button" class="secondary-button" type="button">Cancel</button>
+            <button class="primary-button" value="save" type="submit">Save settings</button>
+          </div>
+        </div>
+      </form>
+    </dialog>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
