@@ -17,12 +17,10 @@
         <button id="settings-button" class="icon-button" type="button" aria-label="Open planner settings" title="Settings">⚙</button>
       </header>
 
-      <section class="summary" aria-live="polite">
-        <strong id="summary-year"></strong>
-        <span aria-hidden="true">·</span>
-        <span><strong id="summary-allowance"></strong> PTO available</span>
-        <span aria-hidden="true">·</span>
-        <span><strong id="summary-remaining"></strong> remaining</span>
+      <section class="summary" aria-live="polite" aria-label="PTO plan summary">
+        <div class="summary-year"><span>Planning year</span><strong id="summary-year"></strong></div>
+        <div class="summary-stat allowance"><span>Annual allowance</span><strong id="summary-allowance"></strong><small>days available</small></div>
+        <div class="summary-stat remaining"><span>Current balance</span><strong id="summary-remaining"></strong><small>days remaining</small></div>
       </section>
 
       <div class="utility-row">
